@@ -7,17 +7,18 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy requirements
+# Copy requirements first for better caching
 COPY pyproject.toml ./
 
-# Install uv for package management
-RUN pip install --no-cache-dir uv
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir .
 
 # Copy the rest of the application
 COPY . .
 
 # Install the package
-RUN uv pip install .
+RUN pip install --no-cache-dir -e .
 
 # Run the MCP server
 CMD ["python", "-m", "posthog_mcp"]
