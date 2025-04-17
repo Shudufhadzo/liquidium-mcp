@@ -1,7 +1,7 @@
 [project]
-name = "posthog-mcp"
+name = "liquidium-mcp"
 version = "0.1.0"
-description = "PostHog MCP tools for annotations and project management"
+description = "Liquidium MCP tools for PostHog analytics, annotations and project management"
 dependencies = [
     "httpx>=0.28.1",
     "mcp[cli]>=1.3.0",
@@ -17,7 +17,7 @@ build-backend = "hatchling.build"
 allow-direct-references = true
 
 [project.scripts]
-posthog-mcp = "posthog_mcp:main"
+liquidium-mcp = "posthog_mcp:main"
 
 [dependency-groups]
 dev = [
@@ -62,4 +62,3 @@ classmethod-decorators = ["classmethod", "pydantic.validator"]
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]  # Ignore unused imports in __init__.py
 "tests/*" = ["ARG", "PLR2004"]  # Ignore unused arguments and magic numbers in tests
-
