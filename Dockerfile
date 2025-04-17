@@ -7,18 +7,12 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends gcc && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy requirements first for better caching
-COPY pyproject.toml ./
-
-# Install Python dependencies
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir .
-
-# Copy the rest of the application
+# Copy the entire application
 COPY . .
 
-# Install the package
-RUN pip install --no-cache-dir -e .
+# Install Python dependencies and the package
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -e .
 
 # Run the MCP server
 CMD ["python", "-m", "posthog_mcp"]
