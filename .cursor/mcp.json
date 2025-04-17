@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "liquidium": {
+      "command": "C:\\Users\\nemul\\AppData\\Local\\Programs\\Python\\Python313\\Scripts\\uv.exe",
+      "args": [
+        "--directory",
+        "C:\\Users\\nemul\\Documents\\lqd\\liq_ph_mcp\\posthog-mcp",
+        "run",
+        "posthog_mcp"
+      ],
+      "env": {
+        "PERSONAL_API_KEY": "YOUR_API_KEY_HERE"
+      }
+    }
+  }
+}

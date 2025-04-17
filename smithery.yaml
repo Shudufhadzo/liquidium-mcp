@@ -1,0 +1,24 @@
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    required:
+      - personalApiKey
+    properties:
+      personalApiKey:
+        type: string
+        description: "Your PostHog API key (starts with phx_)"
+      posthogRegion:
+        type: string
+        enum: ["us", "eu"]
+        default: "us"
+        description: "PostHog region (us or eu)"
+  commandFunction: |
+    (config) => ({
+      command: 'python',
+      args: ['-m', 'posthog_mcp'],
+      env: { 
+        PERSONAL_API_KEY: config.personalApiKey,
+        POSTHOG_REGION: config.posthogRegion || 'us'
+      }
+    })
